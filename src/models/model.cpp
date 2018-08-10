@@ -5,7 +5,6 @@
 #include <iostream>
 #include <fstream>
 #include <GL/freeglut.h>
-#include <GL/glext.h>
 #include <models/model.h>
 
 

@@ -3,9 +3,7 @@
 //
 
 #include <GL/freeglut.h>
-#include <GL/glext.h>
 
-#include <system/window.h>
 #include <system/engine.h>
 
 namespace window {

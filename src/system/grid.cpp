@@ -3,13 +3,11 @@
 //
 
 #include <random>
-#include <algorithm>
 #include <cassert>
 #include <objects/object.h>
 #include <objects/tile.h>
 #include <objects/ufo.h>
 #include <objects/spaceship.h>
-#include <objects/car.h>
 #include <system/engine.h>
 
 
