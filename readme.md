@@ -59,7 +59,6 @@ The code in [models](./src/models) directory is responsible for managing geometr
 
 [model](./include/models/model.h) is their base class.
 [figures](./include/models/figures.h) defines some basic 2D shapes.
-[rocket](./include/models/rocket.h) is a hard-coded rocket model (unused).
 [ms3d](./include/models/ms3d.h) loads complicated models from Milk Shape 3D model files.
 Note, that a model does not contain any transformation information.
 
@@ -68,8 +67,6 @@ Code in [objects](./src/objects) defines objects that are actually presented in 
 An object usually contains a model (which determines the object's shape), along with its transformation (position, rotation, etc.).
 
 [object](./include/objects/object.h) is their base class.
-[outline](./include/objects/outline.h) is a class of special objects that uses advanced render techniques,
-which is inherited by [spaceship](./include/objects/spaceship.h) to render the 'merging shinning boundary' effect.
 Some object like [camera](./include/objects/camera.h) does not contain a model.
 It only does the look-at transform.
 

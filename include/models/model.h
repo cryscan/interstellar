@@ -27,6 +27,8 @@ struct image {
 class model {
 public:
     model();
+    virtual ~model() = default;
+
     void set_color(const glm::vec4 &color);
     void load_texture(const std::string &filename);
     virtual void render() = 0;

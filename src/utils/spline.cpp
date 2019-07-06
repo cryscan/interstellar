@@ -6,9 +6,7 @@
 
 using namespace std;
 
-spline::spline(const vector<glm::vec3> &points,
-               float tension) : points(points),
-                                tension(tension) {
+spline::spline(const vector<glm::vec3>& points, float tension) : points(points) {
     size = points.size();
     last_segment = size;
 

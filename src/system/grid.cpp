@@ -77,22 +77,19 @@ void grid::generate_block(int row) {
 }
 
 void grid::create_scene() {
-    auto &engine = engine::get_instance();
+    auto& engine = engine::get_instance();
 
     // First pass, create tiles and ufos.
-    for (auto &node : nodes) {
+    for (auto& node : nodes) {
         // Create tiles.
-        object *obj = new tile(node.type, node.orientation, glm::vec3(node.offset));
-        engine.add_object(obj);
+        engine.add_object(std::make_unique<tile>(node.type, node.orientation, glm::vec3(node.offset)));
 
         switch (node.type) {
             case NODE_UFO:
-                obj = new ufo(glm::vec3(node.offset), rand() % 360, rand() % 360);
-                engine.add_object(obj);
+                engine.add_object(std::make_unique<ufo>(glm::vec3(node.offset), rand() % 360, rand() % 360));
                 break;
             case NODE_SPACESHIP:
-                obj = new spaceship(glm::vec3(node.offset), rand() % 360);
-                engine.add_object(obj);
+                engine.add_object(std::make_unique<spaceship>(glm::vec3(node.offset), rand() % 360));
                 break;
             default:
                 break;
@@ -101,7 +98,7 @@ void grid::create_scene() {
 }
 
 // Find the path from origin to an empty node, storing it into a vector.
-void grid::find_path(const node &node) {
+void grid::find_path(const node& node) {
     path_nodes.clear();
     if (node.type == NODE_EMPTY) {
         glm::vec<2, int> origin({0, 4});
@@ -134,7 +131,7 @@ void grid::find_path(const node &node) {
             path_nodes.push_back(target);
         }
 
-        auto compare = [](glm::vec<2, int> &u, glm::vec<2, int> &v) {
+        auto compare = [](glm::vec<2, int>& u, glm::vec<2, int>& v) {
             auto ret = u - v;
             return ret[0] == 0 && ret[1] == 0;
         };
@@ -145,7 +142,7 @@ void grid::find_path(const node &node) {
 
 void grid::find_empty() {
     vector<node> empty;
-    for (auto &node : nodes)
+    for (auto& node : nodes)
         if (node.type == NODE_EMPTY)
             empty.push_back(node);
 
@@ -157,15 +154,14 @@ void grid::generate_car() {
     vector<glm::vec3> points;
     vector<glm::vec3> tangents;
 
-    for (auto &path_node : path_nodes) {
+    for (auto& path_node : path_nodes) {
         glm::vec3 point;
         point[0] = path_node[0];
         point[2] = path_node[1];
         points.push_back(point);
     }
 
-    auto &engine = engine::get_instance();
-    object *obj = new car(points);
-    engine.add_object(obj);
+    auto& engine = engine::get_instance();
+    engine.add_object(std::make_unique<car>(points));
 }
 

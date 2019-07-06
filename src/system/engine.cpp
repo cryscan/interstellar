@@ -15,63 +15,62 @@
 
 using namespace std;
 
-engine &engine::get_instance() {
+engine& engine::get_instance() {
     static engine instance;
     return instance;
 }
 
-model *engine::get_model(const string &name) {
+model* engine::get_model(const string& name) {
     auto iter = models.find(name);
     if (iter == models.end()) {
         cerr << "Cannot locate model " << name << endl;
         return nullptr;
     } else
-        return iter->second;
+        return iter->second.get();
 }
 
-void engine::add_object(object *child) {
-    world->add_child(child);
+void engine::add_object(std::unique_ptr<object>&& child) {
+    world->add_child(std::move(child));
 }
 
 // Load models and textures.
 void engine::load_resources() {
     // Load car.
-    model *mesh = new ms3d("./data/car/car.ms3d");
+    auto mesh = std::make_unique<ms3d>("./data/car/car.ms3d");
     mesh->load_texture("./data/car/car.bmp");
-    models.insert({"car.body", mesh});
+    models.insert({"car.body", std::move(mesh)});
 
-    mesh = new ms3d("./data/car/wheel.ms3d");
+    mesh = std::make_unique<ms3d>("./data/car/wheel.ms3d");
     mesh->load_texture("./data/car/wheel.bmp");
-    models.insert({"car.wheel", mesh});
+    models.insert({"car.wheel", std::move(mesh)});
 
     // Load ufo body.
-    mesh = new ms3d("./data/ufo/body.ms3d");
+    mesh = std::make_unique<ms3d>("./data/ufo/body.ms3d");
     mesh->load_texture("./data/ufo/diffuse.bmp");
-    models.insert({"ufo.body", mesh});
+    models.insert({"ufo.body", std::move(mesh)});
 
     // Load ufo cockpit.
-    mesh = new ms3d("./data/ufo/cockpit.ms3d");
+    mesh = std::make_unique<ms3d>("./data/ufo/cockpit.ms3d");
     mesh->load_texture("./data/ufo/diffuse_glow.bmp");
-    models.insert({"ufo.cockpit", mesh});
+    models.insert({"ufo.cockpit", std::move(mesh)});
 
     // Load rocket.
-    mesh = new ms3d("./data/rocket/rocket.ms3d");
-    glm::vec4 color_black = {0, 0, 0, 1.0f};
-    mesh->set_color(color_black);
-    models.insert({"rocket", mesh});
+    mesh = std::make_unique<ms3d>("./data/rocket/rocket.ms3d");
+    mesh->set_color({0, 0, 0, 1.0f});
+    models.insert({"rocket", std::move(mesh)});
 
     // Load tiles.
-    mesh = new ms3d("./data/tiles/tile.ms3d");
+    mesh = std::make_unique<ms3d>("./data/tiles/tile.ms3d");
     mesh->load_texture("./data/tiles/block.bmp");
-    models.insert({"tiles.block", mesh});
+    models.insert({"tiles.block", std::move(mesh)});
 
-    mesh = new ms3d("./data/tiles/tile.ms3d");
+    mesh = std::make_unique<ms3d>("./data/tiles/tile.ms3d");
     mesh->load_texture("./data/tiles/park.bmp");
-    models.insert({"tiles.park", mesh});
+    models.insert({"tiles.park", std::move(mesh)});
 
-    mesh = new ms3d("./data/tiles/tile.ms3d");
+    mesh = std::make_unique<ms3d>("./data/tiles/tile.ms3d");
     mesh->load_texture("./data/tiles/path.bmp");
-    models.insert({"tiles.path", mesh});
+    models.insert({"tiles.path", std::move(mesh)});
 }
 
 void engine::initialize() {
@@ -106,10 +105,10 @@ void engine::render() {
     world->render(2);
 }
 
-void engine::mouse(int button, int state, glm::vec<2, int> &pos) {
+void engine::mouse(int button, int state, glm::vec<2, int>& pos) {
     world->mouse(button, state, pos);
 }
 
-void engine::motion(glm::vec<2, int> &pos) {
+void engine::motion(glm::vec<2, int>& pos) {
     world->motion(pos);
 }

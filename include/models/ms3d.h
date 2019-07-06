@@ -29,7 +29,7 @@ private:
         unsigned version;
     };
 
-    word num_vertices;
+    word num_vertices{};
     struct ms3d_vertex {
         byte flags;
         glm::vec3 vertex;
@@ -37,7 +37,7 @@ private:
         byte reference_count;
     };
 
-    word num_triangles;
+    word num_triangles{};
     struct ms3d_triangle {
         word flags;
         glm::vec<3, word> indices;

@@ -6,14 +6,14 @@
 #define P3_SPACESHIFT_H
 
 #include <objects/object.h>
-#include <objects/outline.h>
 
-class spaceship : public outline {
+class spaceship : public object {
 public:
-    explicit spaceship(const glm::vec3 &offset, GLfloat angle);
-    spaceship(const spaceship &obj) = default;
+    explicit spaceship(const glm::vec3& offset, GLfloat angle);
+    spaceship(const spaceship& obj) = default;
 
     void update() override;
+    void render(int pass) override;
 
 private:
     glm::vec3 offset;

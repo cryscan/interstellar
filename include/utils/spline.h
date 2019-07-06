@@ -15,7 +15,6 @@ private:
     unsigned int size;
     constexpr static unsigned N = 10;
 
-    float tension;
     glm::mat4 M;
     glm::mat4x3 MP;
 

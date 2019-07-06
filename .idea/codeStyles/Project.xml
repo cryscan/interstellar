@@ -4,28 +4,14 @@
       <option name="KEEP_STRUCTURES_IN_ONE_LINE" value="true" />
       <option name="TEMPLATE_DECLARATION_STRUCT_WRAP" value="1" />
       <option name="TEMPLATE_DECLARATION_FUNCTION_WRAP" value="1" />
+      <option name="SPACE_BEFORE_TEMPLATE_DECLARATION_LT" value="true" />
+      <option name="SPACE_BEFORE_POINTER_IN_DECLARATION" value="false" />
+      <option name="SPACE_AFTER_POINTER_IN_DECLARATION" value="true" />
+      <option name="SPACE_BEFORE_REFERENCE_IN_DECLARATION" value="false" />
+      <option name="SPACE_AFTER_REFERENCE_IN_DECLARATION" value="true" />
       <option name="SPACE_BETWEEN_OPERATOR_AND_PUNCTUATOR" value="true" />
     </Objective-C>
     <Objective-C-extensions>
-      <file>
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Import" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Macro" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Typedef" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Enum" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Constant" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Global" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Struct" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="FunctionPredecl" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Function" />
-      </file>
-      <class>
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Property" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="Synthesize" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InitMethod" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="StaticMethod" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="InstanceMethod" />
-        <option name="com.jetbrains.cidr.lang.util.OCDeclarationKind" value="DeallocMethod" />
-      </class>
       <extensions>
         <pair source="cpp" header="h" fileNamingConvention="NONE" />
         <pair source="cpp" header="inl" fileNamingConvention="NONE" />

@@ -9,14 +9,13 @@
 #include <glm/glm.h>
 #include <utils/spline.h>
 #include <objects/object.h>
-#include <objects/outline.h>
 
 
 class car : public object {
 private:
     std::vector<glm::vec3> points;
     std::vector<glm::vec3> tangents;
-    spline *route = nullptr;
+    spline route;
 
     float u;
     glm::vec3 offset;
