@@ -19,9 +19,8 @@
 class engine {
 private:
     std::map<std::string, std::unique_ptr<model>> models;
-    grid* park = nullptr;
-    object* world = nullptr;
-
+    std::unique_ptr<grid> park;
+    std::unique_ptr<object> world;
 public:
     engine(engine const&) = delete;
     void operator =(engine const&) = delete;
@@ -38,7 +37,8 @@ public:
     void motion(glm::vec<2, int>& pos);
 
 private:
-    engine() = default;
+    engine();
+
     void load_resources();
 };
 

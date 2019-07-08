@@ -15,7 +15,8 @@
 
 using namespace std;
 
-grid::grid(int C, int R) : columns(C), rows(R), size(C * R) {
+grid::grid(const int columns, const int rows) : columns{columns}, rows{rows} {
+    const int size = columns * rows;
     nodes.resize(size);
     generate();
 }
@@ -101,8 +102,8 @@ void grid::create_scene() {
 void grid::find_path(const node& node) {
     path_nodes.clear();
     if (node.type == NODE_EMPTY) {
-        glm::vec<2, int> origin({0, 4});
-        glm::vec<2, int> target({node.offset[0], node.offset[2]});
+        glm::vec<2, int> origin{0, 4};
+        glm::vec<2, int> target{node.offset[0], node.offset[2]};
         int region = -target[1] / 5;
         int entry = 5 * region;
         int primary_path = entry + 1;    // The row number of primary path.
@@ -110,24 +111,24 @@ void grid::find_path(const node& node) {
         int secondary_path = entry + 3;
 
         path_nodes.push_back(origin);
-        path_nodes.push_back(glm::vec<2, int>({0, -entry}));
-        path_nodes.push_back(glm::vec<2, int>({1, -primary_path}));
+        path_nodes.push_back(glm::vec<2, int>{0, -entry});
+        path_nodes.push_back(glm::vec<2, int>{1, -primary_path});
         if (node.orientation == NODE_UP) {
             // This is the easy case.
-            path_nodes.push_back(target + glm::vec<2, int>({0, -1}));
-            path_nodes.push_back(target + glm::vec<2, int>({1, -1}));
+            path_nodes.push_back(target + glm::vec<2, int>{0, -1});
+            path_nodes.push_back(target + glm::vec<2, int>{1, -1});
 
-            path_nodes.push_back(target + glm::vec<2, int>({0, -1}));
+            path_nodes.push_back(target + glm::vec<2, int>{0, -1});
             path_nodes.push_back(target);
         } else {
             // Otherwise we should go around.
-            path_nodes.push_back(glm::vec<2, int>({columns - 2, -primary_path}));
-            path_nodes.push_back(glm::vec<2, int>({columns - 1, -block}));
-            path_nodes.push_back(glm::vec<2, int>({columns - 2, -secondary_path}));
-            path_nodes.push_back(target + glm::vec<2, int>({0, 1}));
-            path_nodes.push_back(target + glm::vec<2, int>({-1, 1}));
+            path_nodes.push_back(glm::vec<2, int>{columns - 2, -primary_path});
+            path_nodes.push_back(glm::vec<2, int>{columns - 1, -block});
+            path_nodes.push_back(glm::vec<2, int>{columns - 2, -secondary_path});
+            path_nodes.push_back(target + glm::vec<2, int>{0, 1});
+            path_nodes.push_back(target + glm::vec<2, int>{-1, 1});
 
-            path_nodes.push_back(target + glm::vec<2, int>({0, 1}));
+            path_nodes.push_back(target + glm::vec<2, int>{0, 1});
             path_nodes.push_back(target);
         }
 

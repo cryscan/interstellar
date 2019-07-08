@@ -4,7 +4,7 @@
 
 #include <system/window.h>
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     srand(time(nullptr));
 
     window::open(argc, argv);

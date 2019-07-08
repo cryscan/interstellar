@@ -16,7 +16,7 @@ private:
     node_orientation orientation;
 
 public:
-    tile(node_type type, node_orientation orientation, const glm::vec3 &offset);
+    tile(node_type type, node_orientation orientation, const glm::vec3& offset);
     void update() override;
 };
 

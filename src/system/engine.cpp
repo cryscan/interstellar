@@ -35,8 +35,10 @@ void engine::add_object(std::unique_ptr<object>&& child) {
 
 // Load models and textures.
 void engine::load_resources() {
+    std::unique_ptr<model> mesh{nullptr};
+
     // Load car.
-    auto mesh = std::make_unique<ms3d>("./data/car/car.ms3d");
+    mesh = std::make_unique<ms3d>("./data/car/car.ms3d");
     mesh->load_texture("./data/car/car.bmp");
     models.insert({"car.body", std::move(mesh)});
 
@@ -74,10 +76,7 @@ void engine::load_resources() {
 }
 
 void engine::initialize() {
-    load_resources();
     // Initialize world as the parent of all other objects.
-    world = new camera(glm::vec3{2.0f, 6.0f, 6.0f}, glm::vec3{3.5f, 0, -4.5f}, glm::vec3({0, 1, 0}));
-    park = new grid(8, 10);
     park->create_scene();
     park->find_empty();
     park->generate_car();
@@ -111,4 +110,12 @@ void engine::mouse(int button, int state, glm::vec<2, int>& pos) {
 
 void engine::motion(glm::vec<2, int>& pos) {
     world->motion(pos);
+}
+
+engine::engine() :
+        park{std::make_unique<grid>(8, 10)},
+        world{std::make_unique<camera>(glm::vec3{2.0f, 6.0f, 6.0f},
+                                       glm::vec3{3.5f, 0, -4.5f},
+                                       glm::vec3{0, 1, 0})} {
+    load_resources();
 }

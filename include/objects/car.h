@@ -22,7 +22,7 @@ private:
     glm::vec3 target;
 
 public:
-    explicit car(const std::vector<glm::vec3> &points);
+    explicit car(const std::vector<glm::vec3>& points);
     void update() override;
 };
 

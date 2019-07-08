@@ -49,7 +49,7 @@ private:
     };
     // We don't need other information...
 
-    void load(std::string &filename);
+    void load(std::string& filename);
 
     std::vector<vertex> vertices;
     std::vector<glm::vec<3, word>> indices;

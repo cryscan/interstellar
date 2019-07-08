@@ -13,9 +13,9 @@
 namespace glm {
     typedef int length_type;
 
-    template<length_type L, typename T> class vec;
+    template <length_type L, typename T> class vec;
 
-    template<length_type C, length_type R, typename T> class mat;
+    template <length_type C, length_type R, typename T> class mat;
 }
 
 #include "vec.inl"

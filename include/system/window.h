@@ -7,7 +7,7 @@
 
 namespace window {
     // Open the window. Called at the beginning.
-    void open(int argc, char **argv);
+    void open(int argc, char** argv);
     // Init game engine. Called after window is opened.
     void init();
     // Close the window. Called at the end.

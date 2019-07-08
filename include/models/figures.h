@@ -24,7 +24,7 @@ protected:
 class rectangle : public figure {
 public:
     rectangle();
-    explicit rectangle(const glm::vec2 &point);
+    explicit rectangle(const glm::vec2& point);
 
 private:
     glm::vec2 point;

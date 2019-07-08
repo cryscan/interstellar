@@ -21,7 +21,7 @@ namespace window {
     }
 
     void display() {
-        auto &engine = engine::get_instance();
+        auto& engine = engine::get_instance();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         engine.render();
         glutSwapBuffers();
@@ -29,14 +29,12 @@ namespace window {
 
     void mouse(int button, int state, int x, int y) {
         glm::vec<2, int> pos = {x, y};
-        auto &engine = engine::get_instance();
-        engine.mouse(button, state, pos);
+        engine::get_instance().mouse(button, state, pos);
     }
 
     void motion(int x, int y) {
         glm::vec<2, int> pos = {x, y};
-        auto &engine = engine::get_instance();
-        engine.motion(pos);
+        engine::get_instance().motion(pos);
     }
 
     void key(unsigned char key, int x, int y) {
@@ -45,15 +43,14 @@ namespace window {
     }
 
     void timer(int value) {
-        auto &engine = engine::get_instance();
-        engine.update();
+        engine::get_instance().update();
         glutPostRedisplay();
 
         static unsigned refresh = 30;
         glutTimerFunc(refresh, timer, 0);
     }
 
-    void open(int argc, char **argv) {
+    void open(int argc, char** argv) {
         // Create the window.
         GLsizei width = 640, height = 480;
         glutInit(&argc, argv);
@@ -76,8 +73,7 @@ namespace window {
         glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
         // Initialize engine here.
-        auto &engine = engine::get_instance();
-        engine.initialize();
+        engine::get_instance().initialize();
     }
 
     void main_loop() {

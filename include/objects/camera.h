@@ -21,6 +21,7 @@ private:
 
 public:
     camera(const glm::vec3& eye, const glm::vec3& center, const glm::vec3& up);
+
     void update() override;
     void mouse(int button, int state, const glm::vec<2, int>& pos) override;
     void motion(const glm::vec<2, int>& pos) override;

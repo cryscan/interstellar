@@ -17,22 +17,22 @@ namespace glm {
         // Default constructor.
         constexpr vec();
         // Copy constructor.
-        constexpr vec(const vec<L, T> &u);
+        constexpr vec(const vec<L, T>& u);
         template <typename U> constexpr vec(const vec<L, U>& u);
         template <length_type M> constexpr vec(const vec<M, T>& u);
         // List initializer.
-        constexpr vec(std::initializer_list<T> list);
+        constexpr vec(std::initializer_list<T>&& list);
         // Initialize with an array.
-        constexpr vec(std::array<T, L> &array);
+        constexpr vec(std::array<T, L>& array);
 
-        constexpr T *to_array() const;
+        constexpr T* to_array() const;
 
         // Return number of elements.
         constexpr static length_type size() { return L; }
 
         // Accessing operators.
-        T &operator [](length_type i);
-        T const &operator [](length_type i) const;
+        T& operator [](length_type i);
+        T const& operator [](length_type i) const;
 
         constexpr typename std::array<T, L>::const_iterator begin() const { return data.cbegin(); }
 
@@ -58,47 +58,47 @@ namespace glm {
     }
 
     template <length_type L, typename T>
-    constexpr vec<L, T>::vec(const vec<L, T> &u) : data(u.data) {
+    constexpr vec<L, T>::vec(const vec<L, T>& u) : data(u.data) {
     }
 
     template <length_type L, typename T>
     template <typename U>
-    constexpr vec<L, T>::vec(const vec<L, U> &u) : data() {
+    constexpr vec<L, T>::vec(const vec<L, U>& u) : data() {
         for (int i = 0; i < L; ++i)
             data[i] = static_cast<T>(u[i]);
     }
 
     template <length_type L, typename T>
     template <length_type M>
-    constexpr vec<L, T>::vec(const vec<M, T> &u) : data() {
+    constexpr vec<L, T>::vec(const vec<M, T>& u) : data() {
         static_assert(M < L);
         std::copy(u.begin(), u.end(), data.begin());
     }
 
     template <length_type L, typename T>
-    constexpr vec<L, T>::vec(std::initializer_list<T> list) : data() {
+    constexpr vec<L, T>::vec(std::initializer_list<T>&& list) : data() {
         assert(list.size() <= L);
         std::copy(list.begin(), list.end(), data.begin());
     }
 
     template <length_type L, typename T>
-    constexpr vec<L, T>::vec(std::array<T, L> &array) : data(array) {
+    constexpr vec<L, T>::vec(std::array<T, L>& array) : data(array) {
     }
 
     template <length_type L, typename T>
-    constexpr T *vec<L, T>::to_array() const {
-        return reinterpret_cast<T *>(static_cast<type *>(this));
+    constexpr T* vec<L, T>::to_array() const {
+        return reinterpret_cast<T*>(static_cast<type*>(this));
     }
 
     template <length_type L, typename T>
-    T &vec<L, T>::operator [](length_type i) {
+    T& vec<L, T>::operator [](length_type i) {
         assert(i < L);
         return data[i];
     }
 
     // Accessing operator.
     template <length_type L, typename T>
-    T const &vec<L, T>::operator [](length_type i) const {
+    T const& vec<L, T>::operator [](length_type i) const {
         assert(i < L);
         return data[i];
     }
@@ -106,7 +106,7 @@ namespace glm {
     // Unary operators.
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator +=(U scalar) {
+    vec<L, T>& vec<L, T>::operator +=(U scalar) {
         for (int i = 0; i < L; ++i)
             data[i] += static_cast<T>(scalar);
         return *this;
@@ -114,7 +114,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator +=(vec<L, U> &u) {
+    vec<L, T>& vec<L, T>::operator +=(vec<L, U>& u) {
         for (int i = 0; i < L; ++i)
             data[i] += static_cast<T>(u[i]);
         return *this;
@@ -122,7 +122,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator -=(U scalar) {
+    vec<L, T>& vec<L, T>::operator -=(U scalar) {
         for (int i = 0; i < L; ++i)
             data[i] -= static_cast<T>(scalar);
         return *this;
@@ -130,7 +130,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator -=(vec<L, U> &u) {
+    vec<L, T>& vec<L, T>::operator -=(vec<L, U>& u) {
         for (int i = 0; i < L; ++i)
             data[i] -= static_cast<T>(u[i]);
         return *this;
@@ -138,7 +138,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator *=(U scalar) {
+    vec<L, T>& vec<L, T>::operator *=(U scalar) {
         for (int i = 0; i < L; ++i)
             data[i] *= static_cast<T>(scalar);
         return *this;
@@ -146,7 +146,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator *=(vec<L, U> &u) {
+    vec<L, T>& vec<L, T>::operator *=(vec<L, U>& u) {
         for (int i = 0; i < L; ++i)
             data[i] *= static_cast<T>(u[i]);
         return *this;
@@ -154,7 +154,7 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator /=(U scalar) {
+    vec<L, T>& vec<L, T>::operator /=(U scalar) {
         for (int i = 0; i < L; ++i)
             data[i] /= static_cast<T>(scalar);
         return *this;
@@ -162,19 +162,19 @@ namespace glm {
 
     template <length_type L, typename T>
     template <typename U>
-    vec<L, T> &vec<L, T>::operator /=(vec<L, U> &u) {
+    vec<L, T>& vec<L, T>::operator /=(vec<L, U>& u) {
         for (int i = 0; i < L; ++i)
             data[i] /= static_cast<T>(u[i]);
         return *this;
     }
 
     template <length_type L, typename T>
-    vec<L, T> operator +(const vec<L, T> &u) {
+    vec<L, T> operator +(const vec<L, T>& u) {
         return vec<L, T>(u);
     }
 
     template <length_type L, typename T>
-    vec<L, T> operator -(const vec<L, T> &u) {
+    vec<L, T> operator -(const vec<L, T>& u) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = -u[i];
@@ -183,7 +183,7 @@ namespace glm {
 
     // Binary operators.
     template <length_type L, typename T, typename U>
-    vec<L, T> operator +(const vec<L, T> &u, U scalar) {
+    vec<L, T> operator +(const vec<L, T>& u, U scalar) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] + static_cast<T>(scalar);
@@ -191,7 +191,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator +(const vec<L, T> &u, const vec<L, U> &v) {
+    vec<L, T> operator +(const vec<L, T>& u, const vec<L, U>& v) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] + static_cast<T>(v[i]);
@@ -199,7 +199,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator -(const vec<L, T> &u, U scalar) {
+    vec<L, T> operator -(const vec<L, T>& u, U scalar) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] - static_cast<T>(scalar);
@@ -207,7 +207,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator -(const vec<L, T> &u, const vec<L, U> &v) {
+    vec<L, T> operator -(const vec<L, T>& u, const vec<L, U>& v) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] - static_cast<T>(v[i]);
@@ -215,7 +215,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator *(const vec<L, T> &u, U scalar) {
+    vec<L, T> operator *(const vec<L, T>& u, U scalar) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] * static_cast<T>(scalar);
@@ -223,7 +223,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator *(const vec<L, T> &u, const vec<L, U> &v) {
+    vec<L, T> operator *(const vec<L, T>& u, const vec<L, U>& v) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] * static_cast<T>(v[i]);
@@ -231,7 +231,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator /(const vec<L, T> &u, U scalar) {
+    vec<L, T> operator /(const vec<L, T>& u, U scalar) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] / static_cast<T>(scalar);
@@ -239,7 +239,7 @@ namespace glm {
     }
 
     template <length_type L, typename T, typename U>
-    vec<L, T> operator /(const vec<L, T> &u, const vec<L, U> &v) {
+    vec<L, T> operator /(const vec<L, T>& u, const vec<L, U>& v) {
         vec<L, T> ret;
         for (int i = 0; i < L; ++i)
             ret[i] = u[i] / static_cast<T>(v[i]);
@@ -265,7 +265,7 @@ namespace glm {
 
 namespace glm {
     template <length_type L, typename T, typename U>
-    T dot(const vec<L, T> &u, const vec<L, U> &v) {
+    T dot(const vec<L, T>& u, const vec<L, U>& v) {
         T ret = 0;
         for (int i = 0; i < L; ++i)
             ret += u[i] * static_cast<T>(v[i]);
@@ -273,7 +273,7 @@ namespace glm {
     }
 
     template <typename T, typename U>
-    vec<3, T> cross(const vec<3, T> &u, const vec<3, U> &v) {
+    vec<3, T> cross(const vec<3, T>& u, const vec<3, U>& v) {
         vec<3, T> ret;
         ret[0] = u[1] * static_cast<T>(v[2]) - u[2] * static_cast<T>(v[1]);
         ret[1] = -u[0] * static_cast<T>(v[2]) + u[2] * static_cast<T>(v[0]);

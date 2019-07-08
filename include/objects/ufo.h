@@ -17,7 +17,7 @@ private:
     GLfloat precession_velocity;
 
 public:
-    explicit ufo(const glm::vec3 &offset, GLfloat precession_angle, GLfloat spin_angle);
+    explicit ufo(const glm::vec3& offset, GLfloat precession_angle, GLfloat spin_angle);
     void update() override;
 };
 

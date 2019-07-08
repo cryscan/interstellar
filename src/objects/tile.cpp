@@ -9,9 +9,9 @@
 
 tile::tile(node_type type,
            node_orientation orientation,
-           const glm::vec3 &offset) : offset(offset),
+           const glm::vec3& offset) : offset(offset),
                                       orientation(orientation) {
-    auto &engine = engine::get_instance();
+    auto& engine = engine::get_instance();
     switch (type) {
         case NODE_PATH:
             mesh = engine.get_model("tiles.path");
@@ -33,5 +33,5 @@ void tile::update() {
     // Rotate the tile according to target.
     GLfloat angle = 90.0f * orientation;
     glRotatef(angle, 0, 1.0f, 0);
-    glGetFloatv(GL_MODELVIEW_MATRIX, reinterpret_cast<GLfloat *>(&transform));
+    glGetFloatv(GL_MODELVIEW_MATRIX, reinterpret_cast<GLfloat*>(&transform));
 }

@@ -29,15 +29,15 @@ public:
     model();
     virtual ~model() = default;
 
-    void set_color(const glm::vec4 &color);
-    void load_texture(const std::string &filename);
+    void set_color(const glm::vec4& color_);
+    void load_texture(const std::string& filename);
     virtual void render() = 0;
 
 protected:
     GLuint texture_id;
     glm::vec4 color;
 
-    image *load_bmp(const std::string &filename);
+    image* load_bmp(const std::string& filename);
 };
 
 #endif //P3_MODEL_H

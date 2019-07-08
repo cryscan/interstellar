@@ -21,7 +21,7 @@ private:
     unsigned int last_segment;
 
 public:
-    spline(const std::vector<glm::vec3> &points,
+    spline(const std::vector<glm::vec3>& points,
            float tension);
 
     glm::mat3x2 get(unsigned int n, float u);

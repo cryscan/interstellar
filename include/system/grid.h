@@ -20,7 +20,7 @@ struct node {
 
 class grid {
 private:
-    const int columns, rows, size;
+    const int columns, rows;
     std::vector<node> nodes;
     std::vector<glm::vec<2, int>> path_nodes;
 
@@ -29,10 +29,10 @@ private:
     void generate_path(int row, node_orientation orientation);
     void generate_block(int row);
 
-    void find_path(const node &node);
+    void find_path(const node& node);
 
 public:
-    grid(int C, int R);
+    grid(int columns, int rows);
     void create_scene();
     void find_empty();
     void generate_car();
